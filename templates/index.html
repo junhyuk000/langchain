@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>감정 분석 챗봇</title>
+</head>
+<body>
+    <h2>감정 분석 챗봇 🤖</h2>
+
+    <form method="post">
+        <input type="text" name="message" placeholder="감정을 입력해보세요" required autofocus>
+        <button type="submit">전송</button>
+    </form>
+
+    {% if response %}
+    <p><strong>AI 응답:</strong> {{ response }}</p>
+    {% endif %}
+
+    <h3>대화 기록</h3>
+    <ul>
+        {% for msg in history %}
+        <li><strong>🙋 사용자:</strong> {{ msg.input }}<br>
+            <strong>🤖 AI:</strong> {{ msg.output }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>감정 분류 그래프</h3>
+    <img src="{{ url_for('static', filename='graph.png') }}" width="400">
+</body>
+</html>
